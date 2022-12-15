@@ -13,6 +13,13 @@
 		CD39AB012947CAEC00FD9C09 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39AB002947CAEC00FD9C09 /* GameScene.swift */; };
 		CD39AB032947CB7000FD9C09 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = CD39AB022947CB7000FD9C09 /* GameScene.sks */; };
 		CD39AB052947CB7D00FD9C09 /* Donut.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39AB042947CB7D00FD9C09 /* Donut.swift */; };
+		CD39AB072947E8BB00FD9C09 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD39AB062947E8BB00FD9C09 /* GameObject.swift */; };
+		CDB924E72947F49D00568BE3 /* Points.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB924E62947F49D00568BE3 /* Points.swift */; };
+		CDB924E92947F4BB00568BE3 /* Spawner.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB924E82947F4BB00568BE3 /* Spawner.swift */; };
+		CDB924EB2947F4D200568BE3 /* Obstacle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB924EA2947F4D200568BE3 /* Obstacle.swift */; };
+		CDB924ED2947FA9700568BE3 /* Digit.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB924EC2947FA9700568BE3 /* Digit.swift */; };
+		CDB924F02947FBF700568BE3 /* TextureExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB924EF2947FBF700568BE3 /* TextureExt.swift */; };
+		CDB924F2294811FA00568BE3 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB924F1294811FA00568BE3 /* GameView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +30,13 @@
 		CD39AB002947CAEC00FD9C09 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		CD39AB022947CB7000FD9C09 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		CD39AB042947CB7D00FD9C09 /* Donut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Donut.swift; sourceTree = "<group>"; };
+		CD39AB062947E8BB00FD9C09 /* GameObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
+		CDB924E62947F49D00568BE3 /* Points.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Points.swift; sourceTree = "<group>"; };
+		CDB924E82947F4BB00568BE3 /* Spawner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spawner.swift; sourceTree = "<group>"; };
+		CDB924EA2947F4D200568BE3 /* Obstacle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Obstacle.swift; sourceTree = "<group>"; };
+		CDB924EC2947FA9700568BE3 /* Digit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digit.swift; sourceTree = "<group>"; };
+		CDB924EF2947FBF700568BE3 /* TextureExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureExt.swift; sourceTree = "<group>"; };
+		CDB924F1294811FA00568BE3 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,10 +71,17 @@
 			children = (
 				CD39AAF22947C70E00FD9C09 /* GranchioApp.swift */,
 				CD39AAF42947C70E00FD9C09 /* ContentView.swift */,
+				CDB924F1294811FA00568BE3 /* GameView.swift */,
 				CD39AB022947CB7000FD9C09 /* GameScene.sks */,
 				CD39AB002947CAEC00FD9C09 /* GameScene.swift */,
+				CD39AB062947E8BB00FD9C09 /* GameObject.swift */,
 				CD39AB042947CB7D00FD9C09 /* Donut.swift */,
+				CDB924E82947F4BB00568BE3 /* Spawner.swift */,
+				CDB924EA2947F4D200568BE3 /* Obstacle.swift */,
+				CDB924E62947F49D00568BE3 /* Points.swift */,
+				CDB924EC2947FA9700568BE3 /* Digit.swift */,
 				CD39AAF62947C70F00FD9C09 /* Assets.xcassets */,
+				CDB924EF2947FBF700568BE3 /* TextureExt.swift */,
 			);
 			path = Granchio;
 			sourceTree = "<group>";
@@ -135,10 +156,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB924E92947F4BB00568BE3 /* Spawner.swift in Sources */,
 				CD39AB052947CB7D00FD9C09 /* Donut.swift in Sources */,
 				CD39AB012947CAEC00FD9C09 /* GameScene.swift in Sources */,
+				CDB924F02947FBF700568BE3 /* TextureExt.swift in Sources */,
 				CD39AAF52947C70E00FD9C09 /* ContentView.swift in Sources */,
+				CDB924F2294811FA00568BE3 /* GameView.swift in Sources */,
 				CD39AAF32947C70E00FD9C09 /* GranchioApp.swift in Sources */,
+				CDB924ED2947FA9700568BE3 /* Digit.swift in Sources */,
+				CDB924E72947F49D00568BE3 /* Points.swift in Sources */,
+				CDB924EB2947F4D200568BE3 /* Obstacle.swift in Sources */,
+				CD39AB072947E8BB00FD9C09 /* GameObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

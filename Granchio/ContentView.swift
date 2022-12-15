@@ -9,15 +9,8 @@ import SwiftUI
 import SpriteKit
 
 struct ContentView: View {
-    var scene: SKScene {
-        let scene = SKScene(fileNamed: "GameScene")!
-        scene.scaleMode = .aspectFill
-        return scene
-    }
-    
     var body: some View {
-        SpriteView(scene: scene)
-            .ignoresSafeArea()
+        GameView()
     }
 }
 

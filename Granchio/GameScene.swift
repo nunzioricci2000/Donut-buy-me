@@ -7,13 +7,102 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate, GameObject {
     var donut: Donut!
+    var points: Points!
+    var startButton: SKSpriteNode!
+    var lastTime: TimeInterval? = nil
+    var distance: Double = 0
+    var velocity: Double {
+        sqrt(distance) + 100
+    }
+    var onLose: ((Int, GameScene)->())?
+    var started: Bool = false
+    
+    convenience init?(onLose: ((Int, GameScene) -> Void)? = nil) {
+        self.init(fileNamed: "GameScene")
+        self.onLose = onLose
+    }
     
     override func didMove(to view: SKView) {
-        donut = childNode(withName: "donut") as? Donut
-        addChild(SKSpriteNode(color: .white, size: .init(width: 24, height: 24)))
+        _create()
+    }
+    
+    func onCreate() {
+        physicsWorld.contactDelegate = self
         removeAntialising()
+        isPaused = false
+        started = false
+        donut = childNode(withName: "donut") as? Donut
+        points = childNode(withName: "points") as? Points
+        startButton = (childNode(withName: "startButton") as! SKSpriteNode)
+    }
+    
+    func onUpdate(_ delta: TimeInterval) {
+            distance += velocity * delta
+            points.value = Int(distance.rounded())
+    }
+    
+    func _update(_ deltaTime: TimeInterval) {
+        if !isPaused, started {
+            onUpdate(deltaTime)
+            for child in children {
+                guard let child = child as? GameObject else { continue }
+                child._update(deltaTime)
+            }
+        }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        guard let lastTime = lastTime else {
+            lastTime = currentTime
+            return
+        }
+        let deltaTime = currentTime - lastTime
+        self.lastTime = currentTime
+        _update(deltaTime)
+        self.startButton.isHidden = started
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if isPaused {
+            _create()
+            return
+        }
+        if !started {
+            start()
+        }
+        guard let _ = touches.first else { return }
+        donut.tapped = true
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let _ = touches.first else { return }
+        donut.tapped = false
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        guard [contact.bodyA.node, contact.bodyB.node].contains(donut) else { return }
+        //if contact.contactNormal.dx < -0.5 { lose() }
+        donut.objectTouched += 1
+    }
+    
+    
+    
+    func didEnd(_ contact: SKPhysicsContact) {
+        guard [contact.bodyA.node, contact.bodyB.node].contains(donut) else { return }
+        donut.objectTouched -= 1
+    }
+    
+    func start() {
+        points.value = 0
+        started = true
+    }
+    
+    func lose() {
+        isPaused = true
+        donut.physicsBody?.isDynamic = false
+        onLose?(points.value, self)
     }
     
     func removeAntialising(from node: SKNode? = nil) {
