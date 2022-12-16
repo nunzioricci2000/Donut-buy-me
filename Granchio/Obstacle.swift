@@ -10,7 +10,7 @@ import SpriteKit
 class Obstacle: SKSpriteNode, GameObject {
     private static let obstacles: [SKTexture] = {
         var obstacles: [SKTexture] = []
-        for i in 0...7 {
+        for i in 0...8 {
             obstacles.append(.init(pixelart: "obstacle/\(i)"))
         }
         return obstacles
@@ -20,7 +20,7 @@ class Obstacle: SKSpriteNode, GameObject {
         let texture = Obstacle.obstacles.randomElement()!
         self.init(texture: texture, color: .clear, size: texture.size())
         self.position = position
-        self.physicsBody = SKPhysicsBody(rectangleOf: size)
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.texture!.size())
         self.physicsBody?.isDynamic = false
     }
     

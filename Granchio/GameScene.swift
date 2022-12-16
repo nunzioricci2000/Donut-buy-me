@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameObject {
     }
     var onLose: ((Int, GameScene)->())?
     var started: Bool = false
+    var firstTime: Bool = true
+    var cutscene: CutScene?
     
     convenience init?(onLose: ((Int, GameScene) -> Void)? = nil) {
         self.init(fileNamed: "GameScene")
@@ -29,7 +31,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameObject {
     }
     
     func onCreate() {
+        if firstTime {
+            firstTime = false
+            cutscene = CutScene()
+            addChild(cutscene!)
+        }
+        distance = 0
         physicsWorld.contactDelegate = self
+        physicsWorld.gravity.dx = 1
         removeAntialising()
         isPaused = false
         started = false
@@ -39,8 +48,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, GameObject {
     }
     
     func onUpdate(_ delta: TimeInterval) {
+        if donut.position.x <= -211 {
+            lose()
+        }
+        if !isPaused {
             distance += velocity * delta
-            points.value = Int(distance.rounded())
+            points.value = Int(distance.rounded())/10
+        }
     }
     
     func _update(_ deltaTime: TimeInterval) {

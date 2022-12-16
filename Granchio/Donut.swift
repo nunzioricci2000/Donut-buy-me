@@ -29,10 +29,18 @@ class Donut: SKSpriteNode, GameObject {
         .init(dx: (velocity.dx - lastVelocity.dx) / deltaTime,
               dy: (velocity.dy - lastVelocity.dy) / deltaTime)
     }
+    var jumpSound = SKAction.playSoundFileNamed("Jump.mp3", waitForCompletion: false)
+    var jumpUp = {
+        var textures = [SKTexture]()
+        for i in 0...5 {
+            textures.append(.init(pixelart: "donut/up/\(i)"))
+        }
+        return SKAction.animate(with: textures,timePerFrame: 0.1)
+    }()
     
     fileprivate static let frames: [SKTexture] = {
         var frames: [SKTexture] = []
-        for i in 0...7 {
+        for i in 0...9 {
             frames.append(.init(pixelart: "donut/\(i)"))
         }
         return frames
@@ -41,14 +49,15 @@ class Donut: SKSpriteNode, GameObject {
     func onCreate() {
         if startingPosition == nil {
             startingPosition = position
+            constraints = [
+                .positionX(.init(upperLimit: position.x))
+            ]
         } else {
-            startingPosition = position
+            position = startingPosition!
         }
         physicsBody?.isDynamic = true
         tapped = false
-        constraints = [
-            .positionX(.init(upperLimit: position.x))
-        ]
+        
         
     }
     
@@ -67,7 +76,9 @@ class Donut: SKSpriteNode, GameObject {
     }
     
     func jump() {
-        physicsBody?.applyImpulse(.init(dx: 0, dy: 7))
+        physicsBody?.applyImpulse(.init(dx: 0, dy: 8))
+        self.run(jumpSound)
+        // self.run(jumpUp)
     }
     
     required init?(coder aDecoder: NSCoder) {

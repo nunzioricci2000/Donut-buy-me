@@ -30,5 +30,8 @@ struct GameView: View {
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
         GameView()
+            .previewLayout(.device)
+            .previewDevice(.init(rawValue: "iPhone 13"))
+            .previewInterfaceOrientation(.landscapeRight)
     }
 }
